@@ -16,9 +16,13 @@ class AppCubit extends Cubit<AppState> {
 
   void applyFiler(int option) async {
     if (state is AppInitial) {
+      try {
       final currentState = state as AppInitial;
-      emit(AppInitial(
-          appmodel: currentState.appmodel.copyWith(homeFilter: option)));
+      final res = currentState.appmodel.copyWith(homeFilter: option);
+      emit(AppInitial(appmodel: res));        
+      } catch (e) {
+        print(e.toString());
+      }
     }
   }
 }

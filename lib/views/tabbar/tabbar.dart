@@ -33,74 +33,71 @@ class _TabbarState extends State<Tabbar> {
     return VGColoredStatusBar(
       color: Colors.white,
       brightness: Brightness.light,
-      child: BlocProvider(
-        create: (context) => AppCubit(),
-        child: BlocConsumer<AppCubit, AppState>(
-          listener: (context, state) {},
-          builder: (context, state) {
-            if (state is AppInitial) {
-              return Scaffold(
-                body: _screens[state.appmodel.appTab!],
-                bottomNavigationBar: Padding(
-                  padding:
-                      const EdgeInsets.only(left: 13, right: 13, bottom: 25),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: AppConstants.darkAccent,
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                    padding: const EdgeInsets.only(
-                        left: 30, right: 30, top: 9, bottom: 8),
-                    child: SizedBox(
-                      height: 54,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          _buildTabItem(
-                              0,
-                              state.appmodel.appTab!,
-                              AppImages.eshopeTab,
-                              AppStrings.eShope,
-                              19,
-                              19,
-                              context),
-                          _buildTabItem(
-                              1,
-                              state.appmodel.appTab!,
-                              AppImages.exchangeTab,
-                              AppStrings.exchange,
-                              20,
-                              19.97,
-                              context),
-                          _buildMiddleTab(),
-                          _buildTabItem(
-                              3,
-                              state.appmodel.appTab!,
-                              AppImages.launchpadTab,
-                              AppStrings.launchPad,
-                              18.17,
-                              19,
-                              context),
-                          _buildTabItem(
-                              4,
-                              state.appmodel.appTab!,
-                              AppImages.walletTab,
-                              AppStrings.wallet,
-                              18.17,
-                              19,
-                              context),
-                        ],
-                      ),
+      child: BlocConsumer<AppCubit, AppState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          if (state is AppInitial) {
+            return Scaffold(
+              body: _screens[state.appmodel.appTab!],
+              bottomNavigationBar: Padding(
+                padding:
+                    const EdgeInsets.only(left: 13, right: 13, bottom: 25),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: AppConstants.darkAccent,
+                    borderRadius: BorderRadius.circular(25.0),
+                  ),
+                  padding: const EdgeInsets.only(
+                      left: 30, right: 30, top: 9, bottom: 8),
+                  child: SizedBox(
+                    height: 54,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        _buildTabItem(
+                            0,
+                            state.appmodel.appTab!,
+                            AppImages.eshopeTab,
+                            AppStrings.eShope,
+                            19,
+                            19,
+                            context),
+                        _buildTabItem(
+                            1,
+                            state.appmodel.appTab!,
+                            AppImages.exchangeTab,
+                            AppStrings.exchange,
+                            20,
+                            19.97,
+                            context),
+                        _buildMiddleTab(),
+                        _buildTabItem(
+                            3,
+                            state.appmodel.appTab!,
+                            AppImages.launchpadTab,
+                            AppStrings.launchPad,
+                            18.17,
+                            19,
+                            context),
+                        _buildTabItem(
+                            4,
+                            state.appmodel.appTab!,
+                            AppImages.walletTab,
+                            AppStrings.wallet,
+                            18.17,
+                            19,
+                            context),
+                      ],
                     ),
                   ),
                 ),
-              );
-            } else {
-              return const SizedBox.shrink();
-            }
-          },
-        ),
+              ),
+            );
+          } else {
+            return const SizedBox.shrink();
+          }
+        },
       ),
     );
   }

@@ -11,7 +11,7 @@ import 'package:gweiland_flutter_task/widgets/outline_textfield.dart';
 import 'package:gweiland_flutter_task/widgets/primary_btn.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class ExchangeTab extends StatefulWidget {
+class ExchangeTab<T extends AppCubit> extends StatefulWidget {
   const ExchangeTab({super.key});
 
   @override
@@ -134,31 +134,34 @@ class _ExchangeTabState extends State<ExchangeTab> {
         const SizedBox(
           width: 9,
         ),
-        RoundedOutlineButton(
-            onPressed: () async {
-              final filterList = ['Price', 'Volume_24h'];
-              await _filterBootmSheet(filterList);
-            },
-            child: Row(
-              children: [
-                SvgPicture.asset(
-                  AppImages.filterIcon,
-                  height: 9,
-                  width: 11.16,
-                  // fit: BoxFit.cover,
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-                Text(
-                  AppStrings.filter,
-                  style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w500,
-                      color: AppConstants.lightgrey.withOpacity(0.3)),
-                )
-              ],
-            ))
+    
+             RoundedOutlineButton(
+                onPressed: () async {
+                  final filterList = ['Price', 'Volume_24h'];
+                  // BlocProvider.of<AppCubit>(context).applyFiler(0);
+                  await _filterBootmSheet(filterList);
+                },
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      AppImages.filterIcon,
+                      height: 9,
+
+                      width: 11.16,
+                      // fit: BoxFit.cover,
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      AppStrings.filter,
+                      style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w500,
+                          color: AppConstants.lightgrey.withOpacity(0.3)),
+                    )
+                  ],
+                ))              
       ],
     );
   }
@@ -370,6 +373,7 @@ class _ExchangeTabState extends State<ExchangeTab> {
         expand: false,
         builder: (_, controller) => BlocConsumer<AppCubit, AppState>(
           listener: (context, state) {},
+          listenWhen: (previous, current) => previous != current,
           builder: (context, state) {
             return Column(
               children: [
